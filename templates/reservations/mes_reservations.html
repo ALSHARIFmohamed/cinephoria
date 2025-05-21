@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Mes Réservations - Cinéphoria{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">🎟️ Mes Réservations</h2>
+
+{% if reservations %}
+  <div class="table-responsive">
+    <table class="table table-striped align-middle shadow-sm">
+      <thead class="table-dark">
+        <tr>
+          <th>Film</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Salle</th>
+          <th>Qualité</th>
+          <th>Nombre de places</th>
+          <th>Total (€)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in reservations %}
+        <tr>
+          <td>{{ r.seance.film.titre }}</td>
+          <td>{{ r.seance.date }}</td>
+          <td>{{ r.seance.heure_debut }}</td>
+          <td>{{ r.seance.salle.nom }}</td>
+          <td>{{ r.seance.qualite.nom }}</td>
+          <td>{{ r.nb_personnes }}</td>
+          <td>{{ r.total }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  <div class="alert alert-info text-center">
+    Aucune réservation pour le moment.
+  </div>
+{% endif %}
+{% endblock %}

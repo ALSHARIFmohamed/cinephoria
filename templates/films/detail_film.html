@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}{{ film.titre }} - Cinéphoria{% endblock %}
+
+{% block content %}
+<div class="row">
+  <!-- Affiche -->
+  <div class="col-md-4">
+    {% if film.affiche %}
+      <img src="{{ film.affiche.url }}" class="img-fluid rounded shadow-sm" alt="{{ film.titre }}">
+    {% else %}
+      <img src="https://via.placeholder.com/300x400?text=Affiche+indisponible" class="img-fluid rounded shadow-sm" alt="Placeholder">
+    {% endif %}
+  </div>
+
+  <!-- Détails -->
+  <div class="col-md-8">
+    <h2 class="mb-3">{{ film.titre }}</h2>
+
+    {% if film.coup_de_coeur %}
+      <span class="badge bg-danger mb-2">❤️ Coup de cœur</span>
+    {% endif %}
+
+    <p class="text-muted">{{ film.description }}</p>
+
+    <ul class="list-group list-group-flush mb-4">
+      <li class="list-group-item"><strong>Âge minimum :</strong> {{ film.age_minimum }} ans</li>
+      {% if film.note %}
+        <li class="list-group-item"><strong>Note moyenne :</strong> {{ film.note }} / 5 ⭐</li>
+      {% endif %}
+    </ul>
+
+    <a href="{% url 'liste_seances' film.id %}" class="btn btn-primary">🎟️ Voir les séances</a>
+  </div>
+</div>
+{% endblock %}
+

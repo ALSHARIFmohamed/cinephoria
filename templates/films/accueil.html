@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Accueil - Cinéphoria{% endblock %}
+
+{% block content %}
+
+<h2 class="mb-4">🎬 Bienvenue sur Cinéphoria</h2>
+
+<!-- Carrousel Bootstrap -->
+{% if films|length >= 1 %}
+<div id="carouselFilms" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for film in films|slice:":3" %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      {% if film.affiche %}
+        <img src="{{ film.affiche.url }}" class="d-block w-100 rounded" alt="{{ film.titre }}">
+      {% else %}
+        <img src="https://via.placeholder.com/900x400?text=Pas+de+visuel" class="d-block w-100" alt="Placeholder">
+      {% endif %}
+      <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
+        <h5>{{ film.titre }}</h5>
+        <p>{{ film.description|truncatewords:15 }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselFilms" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselFilms" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+{% endif %}
+
+<!-- Grille de tous les films -->
+<h3 class="mb-3">📽️ Films à découvrir</h3>
+{% if films %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% for film in films %}
+  <div class="col">
+    <div class="card h-100 shadow-sm border-0">
+      {% if film.affiche %}
+        <img src="{{ film.affiche.url }}" class="card-img-top" alt="{{ film.titre }}">
+      {% else %}
+        <img src="https://via.placeholder.com/300x400?text=Affiche+indisponible" class="card-img-top" alt="Pas d'image">
+      {% endif %}
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">{{ film.titre }}</h5>
+        <p class="card-text text-muted">{{ film.description|truncatewords:20 }}</p>
+        <a href="{% url 'detail_film' film.id %}" class="btn btn-outline-primary mt-auto">Voir le détail</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+  <div class="alert alert-info text-center">Aucun film pour le moment.</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Réservation - {{ seance.film.titre }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <div class="card shadow-sm border-0">
+      <div class="card-header bg-success text-white">
+        <h5 class="mb-0">Réserver une séance</h5>
+      </div>
+      <div class="card-body">
+        <h6 class="mb-3">🎬 <strong>{{ seance.film.titre }}</strong></h6>
+        <ul class="list-unstyled mb-4">
+          <li><strong>Date :</strong> {{ seance.date }} à {{ seance.heure_debut }}</li>
+          <li><strong>Salle :</strong> {{ seance.salle.nom }}</li>
+          <li><strong>Qualité :</strong> {{ seance.qualite.nom }}</li>
+          <li><strong>Prix unitaire :</strong> {{ seance.qualite.prix }} €</li>
+          <li><strong>Places disponibles :</strong> {{ seance.salle.capacite }}</li>
+        </ul>
+
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="nb_personnes" class="form-label">Nombre de places</label>
+            <input type="number" name="nb_personnes" id="nb_personnes" class="form-control" min="1" max="{{ seance.salle.capacite }}" required>
+          </div>
+          <button type="submit" class="btn btn-success w-100">Confirmer la réservation</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
