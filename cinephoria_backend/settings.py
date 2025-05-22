@@ -33,22 +33,24 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',
-    'admin_interface',
-    'colorfield',
-    'django.contrib.admin',
-
-    'cloudinary_storage',
-    'cloudinary',
-
-    'rest_framework',
+     # Django core apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     'users',
+
+    # Third-party apps
+    'corsheaders',
+    'admin_interface',
+    'colorfield',
+    'rest_framework',
+    'cloudinary_storage',
+    'cloudinary',
+
+    # Your apps
+    'users',
     'films',
     'seances',
     'reservations',
