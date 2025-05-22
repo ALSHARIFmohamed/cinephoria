@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['cinephoria.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -86,23 +86,17 @@ WSGI_APPLICATION = 'cinephoria_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+import dj_database_url
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'cinephoria',
-    #     'USER': 'postgres',
-    #     'PASSWORD': '    ',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432',
-    # }
     'default': dj_database_url.config(
-        'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL')
+        default='sqlite:///db.sqlite3',  # pour le fallback local
+        conn_max_age=600
     )
 }
 
-DATABASES['default']= dj_database_url.parse("postgresql://cinephoria_db_user:M6AhCfTCJMmHT29xrEMO3is315MghYqq@dpg-d0n9e2gdl3ps73a0l15g-a.oregon-postgres.render.com/cinephoria_db")
+
+#DATABASES['default']= dj_database_url.parse("postgresql://cinephoria_db_user:M6AhCfTCJMmHT29xrEMO3is315MghYqq@dpg-d0n9e2gdl3ps73a0l15g-a.oregon-postgres.render.com/cinephoria_db")
 #postgresql://cinephoria_db_user:M6AhCfTCJMmHT29xrEMO3is315MghYqq@dpg-d0n9e2gdl3ps73a0l15g-a.oregon-postgres.render.com/cinephoria_db
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
