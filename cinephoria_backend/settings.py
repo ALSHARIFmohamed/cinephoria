@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'colorfield',
     'django.contrib.admin',
 
-    
+     'cloudinary_storage',
+    'cloudinary',
 
     'rest_framework',
     'django.contrib.admin',
@@ -161,4 +162,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CORS_ALLOW_ALL_ORIGINS = True
 
 
-
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'cinemacloud',
+    'API_KEY': '193885898177977',
+    'API_SECRET': 'VXFJW'
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
