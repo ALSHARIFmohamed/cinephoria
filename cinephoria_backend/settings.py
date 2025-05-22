@@ -34,6 +34,8 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'corsheaders',
+    
+
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,7 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     
-  
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
