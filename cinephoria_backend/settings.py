@@ -34,6 +34,10 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'corsheaders',
+    'admin_interface',
+    'colorfield',
+    'django.contrib.admin',
+
     
 
     'rest_framework',

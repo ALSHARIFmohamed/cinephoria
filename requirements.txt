@@ -17,3 +17,6 @@ typing_extensions==4.13.2
 virtualenv==20.31.2
 whitenoise
 whitenoise==6.9.0
+django-admin-interface==0.30.0
+colorfield==0.10.0
+
