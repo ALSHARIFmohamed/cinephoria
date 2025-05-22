@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'colorfield',
     'django.contrib.admin',
 
-     'cloudinary_storage',
+    'cloudinary_storage',
     'cloudinary',
 
     'rest_framework',
