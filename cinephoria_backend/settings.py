@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-#@k(qzz=1p3=d7bf-!7t*x3z@egh9f*cp72i=tgoey57o5+gzz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['cinephoria.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
